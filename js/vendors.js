@@ -1,1 +1,91 @@
-var myMap;function init(){myMap=new ymaps.Map("map",{center:[55.76,37.64],zoom:10},{searchControlProvider:"yandex#search"})}ymaps.ready(init);let move_array=[];function dynamic_adaptive(){let a=$(window).outerWidth();$.each($("*[data-move]"),(function(e,t){if(""!=$(this).data("move")&&null!=$(this).data("move")){let e=$(this).data("move").split(","),t=$("."+e[0]),i=e[1],n=e[2];a<n?$(this).hasClass("js-move_done_"+n)||(i>0?$(this).insertAfter(t.find("*").eq(i-1)):$(this).prependTo(t),$(this).addClass("js-move_done_"+n)):$(this).hasClass("js-move_done_"+n)&&(dynamic_adaptive_back($(this)),$(this).removeClass("js-move_done_"+n))}}))}function dynamic_adaptive_back(a){let e=a.data("move-index"),t=move_array[e],i=t.parent,n=t.index;n>0?a.insertAfter(i.find("*").eq(n-1)):a.prependTo(i)}$("*[data-move]")&&$.each($("*[data-move]"),(function(a,e){""!=$(this).data("move")&&null!=$(this).data("move")&&($(this).attr("data-move-index",a),move_array[a]={parent:$(this).parent(),index:$(this).index()})})),$(window).resize((function(a){dynamic_adaptive()})),dynamic_adaptive();
+
+var myMap;
+
+// Дождёмся загрузки API и готовности DOM.
+ymaps.ready(init);
+
+function init() {
+	// Создание экземпляра карты и его привязка к контейнеру с
+	// заданным id ("map").
+	myMap = new ymaps.Map('map', {
+		// При инициализации карты обязательно нужно указать
+		// её центр и коэффициент масштабирования.
+		center: [55.76, 37.64], // Москва
+		zoom: 10
+	}, {
+		searchControlProvider: 'yandex#search'
+	});
+
+}
+//Adaptive functions
+let move_array = [];
+if ($('*[data-move]')) {
+	$.each($('*[data-move]'), function (index, val) {
+		if ($(this).data('move') != '' && $(this).data('move') != null) {
+			$(this).attr('data-move-index', index);
+			move_array[index] = {
+				'parent': $(this).parent(),
+				"index": $(this).index()
+			};
+		}
+	});
+}
+function dynamic_adaptive() {
+	let w = $(window).outerWidth();
+	$.each($('*[data-move]'), function (index, val) {
+		if ($(this).data('move') != '' && $(this).data('move') != null) {
+			let dat_array = $(this).data('move').split(',');
+			let dat_parent = $('.' + dat_array[0]);
+			let dat_index = dat_array[1];
+			let dat_bp = dat_array[2];
+			if (w < dat_bp) {
+				if (!$(this).hasClass('js-move_done_' + dat_bp)) {
+					if (dat_index > 0) {
+						$(this).insertAfter(dat_parent.find('*').eq(dat_index - 1));
+					} else {
+						$(this).prependTo(dat_parent);
+					}
+					$(this).addClass('js-move_done_' + dat_bp);
+				}
+			} else {
+				if ($(this).hasClass('js-move_done_' + dat_bp)) {
+					dynamic_adaptive_back($(this));
+					$(this).removeClass('js-move_done_' + dat_bp);
+				}
+			}
+		}
+	});
+}
+function dynamic_adaptive_back(el) {
+	let index_original = el.data('move-index');
+	let move_place = move_array[index_original];
+	let parent_place = move_place['parent'];
+	let index_place = move_place['index'];
+	if (index_place > 0) {
+		el.insertAfter(parent_place.find('*').eq(index_place - 1));
+	} else {
+		el.prependTo(parent_place);
+	}
+}
+$(window).resize(function (event) {
+	dynamic_adaptive();
+});
+dynamic_adaptive();
+
+//console.log(move_array);
+
+/*
+function dynamic_adaptive_back_all(){
+	$.each($('*[data-move]'), function(index, val) {
+			let index_original=$(this).data('move-index');
+			let move_place=move_array[index_original];
+			let parent_place=move_place['parent'];
+			let index_place=move_place['index'];
+		if(index_place>0){
+			$(this).insertAfter(parent_place.find('*').eq(index_place-1));
+		}else{
+			$(this).prependTo(parent_place);
+		}
+	});
+}
+*/
