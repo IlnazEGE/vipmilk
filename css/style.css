@@ -180,10 +180,7 @@ body.lock {
 	width: 100%;
 }
 
-input[type=text],
-input[type=email],
-input[type=tel],
-textarea {
+input[type=text] {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -203,6 +200,7 @@ textarea {
 		width: 100%;
 	}
 }
+
 .check {
 	position: relative;
 	padding-left: 47px;
@@ -236,7 +234,6 @@ textarea {
 	font-weight: bold;
 	font-size: 48px;
 	line-height: 56px;
-	/* identical to box height, or 117% */
 	letter-spacing: -0.827586px;
 	color: #1d293f;
 	text-align: center;
@@ -389,6 +386,10 @@ textarea {
 }
 
 .header {
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+	background: #fff;
 	padding: 30px 0 20px 0;
 }
 @media (max-width: 991.98px) {
@@ -858,7 +859,6 @@ textarea {
 	margin: 0;
 }
 .item-footer__link {
-	/* or 22px */
 	position: relative;
 	color: #7c8087;
 }
@@ -941,21 +941,29 @@ textarea {
 }
 
 .documents {
+	margin: 106px 0px 0px 0px;
 	padding: 10px 0 90px 0;
 }
 @media (max-width: 991.98px) {
 	.documents {
 		padding: 10px 0 60px 0;
+		margin: 70px 0px 0px 0px;
 	}
 }
 @media (max-width: 767.98px) {
 	.documents {
 		padding: 10px 0 40px 0;
+		margin: 60px 0px 0px 0px;
 	}
 }
 @media (max-width: 767.98px) {
 	.documents {
 		padding: 10px 0 20px 0;
+	}
+}
+@media (max-width: 479.98px) {
+	.documents {
+		margin: 55px 0px 0px 0px;
 	}
 }
 .documents__row {
@@ -1984,7 +1992,8 @@ textarea {
 	}
 }
 .videos-about__item img,
-.videos-about__item iframe {
+.videos-about__item iframe,
+.videos-about__item video {
 	width: 100%;
 	border-radius: 8px;
 }
