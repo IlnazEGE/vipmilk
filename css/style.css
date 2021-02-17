@@ -147,9 +147,25 @@ body.lock {
 	font-weight: bold;
 	font-size: 20px;
 	line-height: 30px;
-	background: #50b16e;
 	border-radius: 8px;
 	position: relative;
+	border: 2px solid #efefef;
+	-webkit-transition-duration: 0.1s;
+	     -o-transition-duration: 0.1s;
+	        transition-duration: 0.1s;
+	color: #50b16e;
+}
+@media (min-width: 991.98px) {
+	.btn:hover {
+		background: #50b16e;
+		color: #ffffff;
+	}
+	.btn:hover::after {
+		background: url("../img/news/arrow-w.svg") 0 0 no-repeat;
+	}
+	.btn:active {
+		background: #3c9959;
+	}
 }
 .btn::after {
 	content: "";
@@ -158,7 +174,7 @@ body.lock {
 	right: 22px;
 	width: 22px;
 	height: 14px;
-	background: url("../img/news/arrow-w.svg") 0 0 no-repeat;
+	background: url("../img/arrow.svg") 0 0 no-repeat;
 }
 .btn.fw {
 	width: 100%;
@@ -240,6 +256,28 @@ textarea {
 
 .text {
 	padding: 50px 0;
+}
+.text ul li {
+	margin: 0px 0px 12px 0px;
+	position: relative;
+	padding: 0px 0px 0px 20px;
+}
+.text ul li::after {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 0;
+	width: 6px;
+	height: 6px;
+	background: #50b16e;
+}
+.text ol li {
+	margin: 0px 0px 12px 15px;
+}
+.text .list {
+	font-size: 16px;
+	margin: 20px 0;
+	color: #7c8087;
 }
 @media (max-width: 991.98px) {
 	.text {
@@ -345,29 +383,11 @@ textarea {
 .text p {
 	margin: 15px 0px;
 }
+.text p a {
+	color: #50b16e;
+	text-decoration: underline;
+}
 
-.list {
-	font-size: 16px;
-	margin: 20px 0;
-	color: #7c8087;
-}
-.list li,
-.list ol {
-	margin: 0px 0px 12px 0px;
-}
-.list li {
-	position: relative;
-	padding: 0px 0px 0px 20px;
-}
-.list li::after {
-	content: "";
-	position: absolute;
-	top: 3px;
-	left: 0;
-	width: 6px;
-	height: 6px;
-	background: #50b16e;
-}
 .header {
 	padding: 30px 0 20px 0;
 }
@@ -518,6 +538,11 @@ textarea {
 	.menu-header__link {
 		font-size: 23px;
 		line-height: 30px;
+	}
+}
+@media (min-width: 991.98px) {
+	.menu-header__link:hover {
+		color: #000;
 	}
 }
 
@@ -842,6 +867,11 @@ textarea {
 	line-height: 140%;
 	color: #7c8087;
 	display: inline-block;
+}
+@media (min-width: 991.98px) {
+	.item-footer__link a:hover {
+		font-weight: 700;
+	}
 }
 .item-footer__link_user {
 	padding: 0px 0px 0px 47px;
@@ -1484,7 +1514,7 @@ textarea {
 }
 @media (max-width: 540px) {
 	.cost {
-		padding: 20px 50px 25px 20;
+		padding: 20px 50px 25px 50px;
 	}
 }
 @media (max-width: 479.98px) {
@@ -1524,6 +1554,16 @@ textarea {
 	line-height: 21px;
 	/* identical to box height */
 	color: #50b16e;
+	position: relative;
+}
+.body-cost__item.active::after {
+	position: absolute;
+	content: "";
+	bottom: -6px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #50b16e;
 }
 .body-cost__table {
 	border-collapse: collapse;
@@ -1570,7 +1610,7 @@ textarea {
 }
 .body-cost__table .check:before {
 	content: "";
-	left: 0;
+	left: 0px;
 	top: -10px;
 	width: 20px;
 	height: 20px;
@@ -1587,7 +1627,7 @@ textarea {
 	}
 }
 .body-cost__table .check.active:before {
-	background: url("../img/check.svg") center no-repeat;
+	background: url("../img/check-table.svg") center no-repeat;
 }
 .search-body-cost {
 	display: -webkit-box;
@@ -1643,20 +1683,32 @@ textarea {
 	background: url("../img/cost/search.svg") 0 0 no-repeat;
 }
 .search-body-cost__btn {
-	background: #50b16e;
 	border-radius: 6px;
 	font-weight: bold;
 	font-size: 16px;
 	line-height: 24px;
 	/* identical to box height */
+	border: 2px solid #efefef;
+	-webkit-transition-duration: 0.3s;
+	     -o-transition-duration: 0.3s;
+	        transition-duration: 0.3s;
+	color: #50b16e;
 	text-transform: uppercase;
 	/* Backgrounds/Primary */
-	color: #ffffff;
 	padding: 8px 14px;
 }
 @media (max-width: 540px) {
 	.search-body-cost__btn {
 		margin: 7px 0px 0px 0px;
+	}
+}
+@media (min-width: 991.98px) {
+	.search-body-cost__btn:hover {
+		background: #50b16e;
+		color: #ffffff;
+	}
+	.search-body-cost__btn:active {
+		background: #3c9959;
 	}
 }
 
@@ -2035,8 +2087,6 @@ textarea {
 	font-size: 20px;
 	line-height: 30px;
 	margin: 50px 0px 0px 0px;
-	color: #50b16e;
-	border: 2px solid #efefef;
 	border-radius: 8px;
 	display: -webkit-inline-box;
 	display: -ms-inline-flexbox;
@@ -2045,6 +2095,20 @@ textarea {
 	-webkit-box-pack: center;
 	    -ms-flex-pack: center;
 	        justify-content: center;
+	border: 2px solid #efefef;
+	-webkit-transition-duration: 0.3s;
+	     -o-transition-duration: 0.3s;
+	        transition-duration: 0.3s;
+	color: #50b16e;
+}
+@media (min-width: 991.98px) {
+	.forum__show:hover {
+		background: #50b16e;
+		color: #ffffff;
+	}
+	.forum__show:active {
+		background: #3c9959;
+	}
 }
 @media (max-width: 767.98px) {
 	.forum__show {
