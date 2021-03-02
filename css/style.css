@@ -1514,7 +1514,6 @@ input[type=text] {
 }
 
 .cost {
-	overflow: auto;
 	padding: 50px 0px 75px 0;
 }
 @media (max-width: 991.98px) {
@@ -1532,11 +1531,19 @@ input[type=text] {
 		padding: 10px 0 5px 0;
 	}
 }
+.cost__scroll {
+	padding: 0px 0px 7px 0px;
+}
+@media (max-width: 767.98px) {
+	.cost__scroll {
+		overflow: auto;
+	}
+}
 .cost__title {
 	margin: 0px 0px 40px 0px;
 }
 .cost__table {
-	min-width: 765px;
+	min-width: 750px;
 }
 
 .body-cost__nav {
